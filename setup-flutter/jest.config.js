@@ -9,6 +9,7 @@ module.exports = {
     'js',
     'ts'
   ],
+  reporters: [],
   testEnvironment: 'node',
   testMatch: [
     '**/*.test.ts'
