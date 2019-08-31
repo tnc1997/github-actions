@@ -1,0 +1,10 @@
+name: 'Setup Flutter environment'
+description: 'Setup a Flutter environment and add it to the PATH.'
+author: 'Thomas Clark'
+inputs:
+  channel:
+    description: 'The name of a Flutter channel to use.'
+    default: 'stable'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

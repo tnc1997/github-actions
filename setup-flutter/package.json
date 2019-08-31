@@ -1,0 +1,30 @@
+{
+  "name": "setup-flutter",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "ncc build src/setup-flutter.ts",
+    "format": "tslint --fix --project tsconfig.json",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@actions/core": "^1.0.0",
+    "@actions/io": "^1.0.0",
+    "@actions/tool-cache": "^1.0.0",
+    "semver": "^6.0.0",
+    "typed-rest-client": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@zeit/ncc": "~0.20.0",
+    "jest": "^24.0.0",
+    "jest-circus": "^24.0.0",
+    "prettier": "^1.0.0",
+    "ts-jest": "^24.0.0",
+    "tslint": "^5.0.0",
+    "tslint-config-prettier": "^1.0.0",
+    "tslint-plugin-prettier": "^2.0.0",
+    "typescript": "^3.0.0"
+  }
+}

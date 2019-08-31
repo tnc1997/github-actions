@@ -1,0 +1,66 @@
+// DO NOT ADD COMMENTS IN THIS FILE.  They will be lost when the Rush tool resaves it.
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/approved-packages.schema.json",
+  "packages": [
+    {
+      "name": "@actions/core",
+      "allowedCategories": [ "default" ]
+    },
+    {
+      "name": "@actions/io",
+      "allowedCategories": [ "default" ]
+    },
+    {
+      "name": "@actions/tool-cache",
+      "allowedCategories": [ "default" ]
+    },
+    {
+      "name": "@zeic/ncc",
+      "allowedCategories": [ "default" ]
+    },
+    {
+      "name": "@zeit/ncc",
+      "allowedCategories": [ "default" ]
+    },
+    {
+      "name": "jest",
+      "allowedCategories": [ "default" ]
+    },
+    {
+      "name": "jest-circus",
+      "allowedCategories": [ "default" ]
+    },
+    {
+      "name": "prettier",
+      "allowedCategories": [ "default" ]
+    },
+    {
+      "name": "semver",
+      "allowedCategories": [ "default" ]
+    },
+    {
+      "name": "ts-jest",
+      "allowedCategories": [ "default" ]
+    },
+    {
+      "name": "tslint",
+      "allowedCategories": [ "default" ]
+    },
+    {
+      "name": "tslint-config-prettier",
+      "allowedCategories": [ "default" ]
+    },
+    {
+      "name": "tslint-plugin-prettier",
+      "allowedCategories": [ "default" ]
+    },
+    {
+      "name": "typed-rest-client",
+      "allowedCategories": [ "default" ]
+    },
+    {
+      "name": "typescript",
+      "allowedCategories": [ "default" ]
+    }
+  ]
+}
