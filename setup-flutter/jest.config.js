@@ -9,7 +9,9 @@ module.exports = {
     'js',
     'ts'
   ],
-  reporters: [],
+  reporters: [
+    'jest-silent-reporter'
+  ],
   testEnvironment: 'node',
   testMatch: [
     '**/*.test.ts'
