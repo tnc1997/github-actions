@@ -3161,7 +3161,7 @@ function acquireFlutter(release, platform) {
         core.debug(`Extracting archive "${downloadPath}".`);
         const extPath = platform === "windows" || platform === "macos"
             ? yield toolCache.extractZip(downloadPath)
-            : yield toolCache.extractTar(downloadPath);
+            : yield toolCache.extractTar(downloadPath, undefined, "x");
         core.debug(`Extracted archive "${downloadPath}" to ${extPath}.`);
         const toolRoot = path.join(extPath, "flutter");
         core.debug(`Adding ${toolRoot} to cache (${flutterToolName}, ${release.version}, ${platform}).`);

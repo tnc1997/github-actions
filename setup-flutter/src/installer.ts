@@ -26,7 +26,7 @@ export async function acquireFlutter(
   const extPath =
     platform === "windows" || platform === "macos"
       ? await toolCache.extractZip(downloadPath)
-      : await toolCache.extractTar(downloadPath);
+      : await toolCache.extractTar(downloadPath, undefined, "x");
   core.debug(`Extracted archive "${downloadPath}" to ${extPath}.`);
 
   const toolRoot = path.join(extPath, "flutter");
