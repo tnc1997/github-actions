@@ -9,6 +9,9 @@ module.exports = {
     'js',
     'ts'
   ],
+  reporters: [
+    'jest-silent-reporter'
+  ],
   testEnvironment: 'node',
   testMatch: [
     '**/*.test.ts'
@@ -16,6 +19,5 @@ module.exports = {
   testRunner: 'jest-circus/runner',
   transform: {
     '^.+\\.ts$': 'ts-jest'
-  },
-  verbose: true
+  }
 };

@@ -1,30 +1,33 @@
 import * as io from "@actions/io";
 import * as fs from "fs";
-import * as os from "os";
 import * as path from "path";
 import * as semver from "semver";
 
-import * as installer from "../src/installer";
-
-let baseDirectory;
-
-switch (os.platform()) {
-  case "win32":
-    baseDirectory = process.env.USERPROFILE || "C:\\";
-    break;
-  case "darwin":
-    baseDirectory = "/Users";
-    break;
-  default:
-    baseDirectory = "/home";
-    break;
-}
-
-const tempDir = path.join(baseDirectory, "actions", "temp");
-const toolDir = path.join(baseDirectory, "actions", "cache");
+const tempDir = path.join(
+  __dirname,
+  "runner",
+  path.join(
+    Math.random()
+      .toString(36)
+      .substring(7)
+  ),
+  "temp"
+);
+const toolDir = path.join(
+  __dirname,
+  "runner",
+  path.join(
+    Math.random()
+      .toString(36)
+      .substring(7)
+  ),
+  "tools"
+);
 
 process.env.RUNNER_TEMP = tempDir;
 process.env.RUNNER_TOOL_CACHE = toolDir;
+
+import * as installer from "../src/installer";
 
 describe("installer tests", () => {
   afterAll(async () => {

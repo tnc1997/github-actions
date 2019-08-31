@@ -8,6 +8,7 @@ dependencies:
   '@zeit/ncc': 0.20.4
   jest: 24.9.0
   jest-circus: 24.9.0
+  jest-silent-reporter: 0.1.2
   prettier: 1.18.2
   semver: 6.3.0
   ts-jest: 24.0.2_jest@24.9.0
@@ -2103,6 +2104,9 @@ packages:
       node: '>=6'
     peerDependencies:
       jest-resolve: '*'
+    peerDependenciesMeta:
+      jest-resolve:
+        optional: true
     resolution:
       integrity: sha512-pgFw2tm54fzgYvc/OHrnysABEObZCUNFnhjoRjaVOCN8NYc032/gVjPaHD4Aq6ApkSieWtfKAFQtmDKAmhupnQ==
   /jest-regex-util/24.9.0:
@@ -2198,6 +2202,13 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-DxYipDr8OvfrKH3Kel6NdED3OXxjvxXZ1uIY2I9OFbGg+vUkkg7AGvi65qbhbWNPvDckXmzMPbK3u3HaDO49bQ==
+  /jest-silent-reporter/0.1.2:
+    dependencies:
+      chalk: 2.4.2
+      jest-util: 24.9.0
+    dev: false
+    resolution:
+      integrity: sha512-w/qc9NvWqdX0vZv6TUG4EE15d72+JxQJYh+3hqq8cTi3BnfBOtwNtL3T6TwkZSy/sfc3REW5niz0eSBPTIvWnA==
   /jest-snapshot/24.9.0:
     dependencies:
       '@babel/types': 7.5.5
@@ -3958,6 +3969,7 @@ packages:
       husky: 3.0.4
       jest: 24.9.0
       jest-circus: 24.9.0
+      jest-silent-reporter: 0.1.2
       prettier: 1.18.2
       semver: 6.3.0
       ts-jest: 24.0.2_jest@24.9.0
@@ -3969,7 +3981,7 @@ packages:
     dev: false
     name: '@rush-temp/setup-flutter'
     resolution:
-      integrity: sha512-qE4EM3FxerZ7Rrwv6OYMbggR4RE5ORoBDBg5yN7b15OqbkoGgwwwnjPSmSXcyH8rojMaFE94JxMCfaXoQ/U1WA==
+      integrity: sha512-I21XON+RXsF90JVMoXZxtZB7D2DQHrTkPVlD7C2vS20Tg1um3ueviQq6U37BGCqtbRzfjLd4S7YlVvGrK8EVHg==
       tarball: 'file:projects/setup-flutter.tgz'
     version: 0.0.0
 registry: ''
@@ -3983,6 +3995,7 @@ specifiers:
   '@zeit/ncc': ~0.20.0
   jest: ^24.0.0
   jest-circus: ^24.0.0
+  jest-silent-reporter: ~0.1.0
   prettier: ^1.0.0
   semver: ^6.0.0
   ts-jest: ^24.0.0

@@ -31,6 +31,10 @@
       "allowedCategories": [ "default" ]
     },
     {
+      "name": "jest-silent-reporter",
+      "allowedCategories": [ "default" ]
+    },
+    {
       "name": "prettier",
       "allowedCategories": [ "default" ]
     },
