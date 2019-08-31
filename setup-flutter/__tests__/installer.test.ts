@@ -47,6 +47,17 @@ describe("installer tests", () => {
       installer.getPlatform()
     );
 
+    console.log(
+      fs.readdirSync(toolDir),
+      fs.readdirSync(
+        path.join(
+          toolDir,
+          "Flutter",
+          semver.clean(release.version)
+        )
+      )
+    );
+
     expect(fs.existsSync(`${flutter}.complete`)).toBe(true);
     expect(fs.existsSync(path.join(flutter, "bin", "flutter.bat"))).toBe(true);
   }, 300000);
