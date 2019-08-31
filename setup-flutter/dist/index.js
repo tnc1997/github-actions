@@ -3144,11 +3144,28 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// Loads `tempDirectory` before it gets wiped by tool-cache.
+let tempDir = process.env.RUNNER_TEMP || "";
 const core = __importStar(__webpack_require__(776));
 const toolCache = __importStar(__webpack_require__(32));
 const os = __importStar(__webpack_require__(87));
 const path = __importStar(__webpack_require__(622));
 const typedRestClient = __importStar(__webpack_require__(386));
+if (!tempDir) {
+    let baseLocation;
+    if (process.platform === "win32") {
+        baseLocation = process.env.USERPROFILE || "C:\\";
+    }
+    else {
+        if (process.platform === "darwin") {
+            baseLocation = "/Users";
+        }
+        else {
+            baseLocation = "/home";
+        }
+    }
+    tempDir = path.join(baseLocation, "actions", "temp");
+}
 const baseUrl = "https://storage.googleapis.com/flutter_infra/releases/";
 const flutterToolName = "Flutter";
 const restClient = new typedRestClient.RestClient("setup-flutter");

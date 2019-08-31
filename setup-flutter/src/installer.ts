@@ -1,3 +1,6 @@
+// Loads `tempDirectory` before it gets wiped by tool-cache.
+let tempDir = process.env.RUNNER_TEMP || "";
+
 import * as core from "@actions/core";
 import * as toolCache from "@actions/tool-cache";
 import * as os from "os";
@@ -6,6 +9,22 @@ import * as typedRestClient from "typed-rest-client";
 
 import { Release } from "./models/release";
 import { Releases } from "./models/releases";
+
+if (!tempDir) {
+  let baseLocation;
+
+  if (process.platform === "win32") {
+    baseLocation = process.env.USERPROFILE || "C:\\";
+  } else {
+    if (process.platform === "darwin") {
+      baseLocation = "/Users";
+    } else {
+      baseLocation = "/home";
+    }
+  }
+
+  tempDir = path.join(baseLocation, "actions", "temp");
+}
 
 const baseUrl = "https://storage.googleapis.com/flutter_infra/releases/";
 
