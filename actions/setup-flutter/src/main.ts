@@ -1,8 +1,7 @@
 import * as core from "@actions/core";
-
 import * as installer from "./installer";
 
-async function run(): Promise<void> {
+export async function run(): Promise<void> {
   try {
     const channel = core.getInput("channel");
 
@@ -11,5 +10,3 @@ async function run(): Promise<void> {
     core.setFailed(error.message);
   }
 }
-
-run();

@@ -4,67 +4,67 @@
   "packages": [
     {
       "name": "@actions/core",
-      "allowedCategories": [ "default" ]
+      "allowedCategories": [ "actions" ]
+    },
+    {
+      "name": "@actions/http-client",
+      "allowedCategories": [ "actions" ]
     },
     {
       "name": "@actions/io",
-      "allowedCategories": [ "default" ]
+      "allowedCategories": [ "actions" ]
     },
     {
       "name": "@actions/tool-cache",
-      "allowedCategories": [ "default" ]
+      "allowedCategories": [ "actions" ]
     },
     {
-      "name": "@zeic/ncc",
-      "allowedCategories": [ "default" ]
+      "name": "@typescript-eslint/eslint-plugin",
+      "allowedCategories": [ "actions" ]
+    },
+    {
+      "name": "@typescript-eslint/parser",
+      "allowedCategories": [ "actions" ]
     },
     {
       "name": "@zeit/ncc",
-      "allowedCategories": [ "default" ]
+      "allowedCategories": [ "actions" ]
+    },
+    {
+      "name": "eslint",
+      "allowedCategories": [ "actions" ]
+    },
+    {
+      "name": "eslint-config-prettier",
+      "allowedCategories": [ "actions" ]
+    },
+    {
+      "name": "eslint-plugin-prettier",
+      "allowedCategories": [ "actions" ]
     },
     {
       "name": "jest",
-      "allowedCategories": [ "default" ]
+      "allowedCategories": [ "actions" ]
     },
     {
       "name": "jest-circus",
-      "allowedCategories": [ "default" ]
+      "allowedCategories": [ "actions" ]
     },
     {
       "name": "jest-silent-reporter",
-      "allowedCategories": [ "default" ]
+      "allowedCategories": [ "actions" ]
     },
     {
       "name": "prettier",
-      "allowedCategories": [ "default" ]
-    },
-    {
-      "name": "semver",
-      "allowedCategories": [ "default" ]
+      "allowedCategories": [ "actions" ]
     },
     {
       "name": "ts-jest",
-      "allowedCategories": [ "default" ]
-    },
-    {
-      "name": "tslint",
-      "allowedCategories": [ "default" ]
-    },
-    {
-      "name": "tslint-config-prettier",
-      "allowedCategories": [ "default" ]
-    },
-    {
-      "name": "tslint-plugin-prettier",
-      "allowedCategories": [ "default" ]
-    },
-    {
-      "name": "typed-rest-client",
-      "allowedCategories": [ "default" ]
+      "allowedCategories": [ "actions" ]
     },
     {
       "name": "typescript",
-      "allowedCategories": [ "default" ]
+      "allowedCategories": [ "actions" ]
     }
   ]
 }

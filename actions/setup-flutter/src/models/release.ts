@@ -1,4 +1,3 @@
-// tslint:disable
 import { Channel } from "../enums/channel";
 
 export class Release {

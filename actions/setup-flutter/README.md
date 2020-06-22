@@ -1,10 +1,10 @@
 # setup-flutter
 
-This action sets up a flutter environment for use in actions by:
+This action sets up a Flutter environment for use in actions by:
 
-- optionally downloading and installing a version of flutter by channel and adding to PATH
+- optionally downloading and installing a version of Flutter by channel and adding to PATH
 
-# Usage
+## Usage
 
 See [action.yml](action.yml)
 
@@ -26,12 +26,12 @@ jobs:
     runs-on: macOS-latest
     strategy:
       matrix:
-        flutter: [ 'stable', 'beta', 'dev' ]
+        channel: [ 'stable', 'beta', 'dev' ]
     steps:
       - uses: actions/checkout@master
       - uses: tnc1997/github-actions/setup-flutter@master
         with:
-          channel: ${{ matrix.flutter }}
+          channel: ${{ matrix.channel }}
       - run: flutter build appbundle
       - run: flutter build ios
 ```

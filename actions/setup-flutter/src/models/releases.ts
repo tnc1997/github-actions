@@ -1,4 +1,3 @@
-// tslint:disable
 import { CurrentRelease } from "./current-release";
 import { Release } from "./release";
 
