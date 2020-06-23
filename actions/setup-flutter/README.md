@@ -12,7 +12,7 @@ Basic:
 ```yaml
 steps:
   - uses: actions/checkout@master
-  - uses: tnc1997/github-actions/setup-flutter@master
+  - uses: tnc1997/github-actions/actions/setup-flutter@v1
     with:
       channel: 'stable'
   - run: flutter build appbundle
@@ -29,7 +29,7 @@ jobs:
         channel: [ 'stable', 'beta', 'dev' ]
     steps:
       - uses: actions/checkout@master
-      - uses: tnc1997/github-actions/setup-flutter@master
+      - uses: tnc1997/github-actions/actions/setup-flutter@v1
         with:
           channel: ${{ matrix.channel }}
       - run: flutter build appbundle
