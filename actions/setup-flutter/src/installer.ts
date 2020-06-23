@@ -1,11 +1,17 @@
 // Loads `tempDirectory` before it gets wiped by tool-cache.
 let tempDir = process.env.RUNNER_TEMP || "";
 
-import * as core from "@actions/core";
-import * as toolCache from "@actions/tool-cache";
-import * as os from "os";
-import * as path from "path";
-import * as typedRestClient from "typed-rest-client";
+import { addPath, debug } from "@actions/core";
+import { HttpClient } from "@actions/http-client";
+import {
+  cacheDir,
+  downloadTool,
+  extractTar,
+  extractZip,
+  find,
+} from "@actions/tool-cache";
+import { platform } from "os";
+import { join } from "path";
 
 import { Release } from "./models/release";
 import { Releases } from "./models/releases";
@@ -23,66 +29,61 @@ if (!tempDir) {
     }
   }
 
-  tempDir = path.join(baseLocation, "actions", "temp");
+  tempDir = join(baseLocation, "actions", "temp");
 }
 
 const baseUrl = "https://storage.googleapis.com/flutter_infra/releases/";
 
 const flutterToolName = "Flutter";
 
-const restClient = new typedRestClient.RestClient("setup-flutter");
+const httpClient = new HttpClient("setup-flutter");
 
 export async function acquireFlutter(
   release: Release,
   platform: string
 ): Promise<string> {
   const downloadUrl = `${baseUrl}${release.archive}`;
-  core.debug(`Downloading archive from ${downloadUrl}.`);
-  const downloadPath = await toolCache.downloadTool(downloadUrl);
-  core.debug(`Downloaded archive "${downloadPath}" from ${downloadUrl}.`);
+  debug(`Downloading archive from ${downloadUrl}.`);
+  const downloadPath = await downloadTool(downloadUrl);
+  debug(`Downloaded archive "${downloadPath}" from ${downloadUrl}.`);
 
-  core.debug(`Extracting archive "${downloadPath}".`);
+  debug(`Extracting archive "${downloadPath}".`);
   const extPath =
     platform === "windows" || platform === "macos"
-      ? await toolCache.extractZip(downloadPath)
-      : await toolCache.extractTar(downloadPath, undefined, "x");
-  core.debug(`Extracted archive "${downloadPath}" to ${extPath}.`);
+      ? await extractZip(downloadPath)
+      : await extractTar(downloadPath, undefined, "x");
+  debug(`Extracted archive "${downloadPath}" to ${extPath}.`);
 
-  const toolRoot = path.join(extPath, "flutter");
-  core.debug(
+  const toolRoot = join(extPath, "flutter");
+  debug(
     `Adding ${toolRoot} to cache (${flutterToolName}, ${release.version}, ${platform}).`
   );
-  return toolCache.cacheDir(
-    toolRoot,
-    flutterToolName,
-    release.version,
-    platform
-  );
+  return cacheDir(toolRoot, flutterToolName, release.version, platform);
 }
 
 export async function getFlutter(channel: string): Promise<Release> {
   const platform = getPlatform();
   const release = await queryLatestRelease(channel, platform);
 
-  let toolPath = toolCache.find(flutterToolName, release.version, platform);
+  let toolPath = find(flutterToolName, release.version, platform);
 
   if (toolPath) {
-    core.debug(
+    debug(
       `${flutterToolName} found in cache (${toolPath}, ${release.version}, ${platform}).`
     );
   } else {
     toolPath = await acquireFlutter(release, platform);
   }
 
-  toolPath = path.join(toolPath, "bin");
+  toolPath = join(toolPath, "bin");
 
-  core.addPath(toolPath);
+  addPath(toolPath);
 
   return release;
 }
 
 export function getPlatform(): string {
-  switch (os.platform()) {
+  switch (platform()) {
     case "win32":
       return "windows";
     case "darwin":
@@ -97,8 +98,8 @@ export async function queryLatestRelease(
   platform: string
 ): Promise<Release> {
   const releasesUrl = `${baseUrl}releases_${platform}.json`;
-  const releasesResponse = await restClient.get<Releases>(releasesUrl);
-  const releases = releasesResponse.result;
+  const releasesResponse = await httpClient.get(releasesUrl);
+  const releases = JSON.parse(await releasesResponse.readBody()) as Releases;
   if (releases == null) {
     throw new Error(
       `Unable to find any ${flutterToolName} releases for channel "${channel}".`
@@ -111,9 +112,9 @@ export async function queryLatestRelease(
       `Unable to find a ${flutterToolName} release for channel "${channel}".`
     );
   }
-  core.debug(`The latest release hash for channel "${channel}" is ${hash}.`);
+  debug(`The latest release hash for channel "${channel}" is ${hash}.`);
 
-  const release = releases.releases.find(value => value.hash === hash);
+  const release = releases.releases.find((release) => release.hash === hash);
   if (release == null) {
     throw new Error(
       `Unable to find a ${flutterToolName} release for hash "${hash}".`
