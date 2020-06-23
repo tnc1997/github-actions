@@ -1,5 +1,6 @@
 module.exports = {
   clearMocks: true,
+  globals: { "ts-jest": { packageJson: "package.json" } },
   moduleFileExtensions: ["js", "ts"],
   reporters: ["jest-silent-reporter"],
   testEnvironment: "node",
