@@ -10,7 +10,7 @@ import {
   extractZip,
   find,
 } from "@actions/tool-cache";
-import { platform } from "os";
+import { arch, platform } from "os";
 import { join } from "path";
 
 import { Release } from "./models/release";
@@ -56,20 +56,20 @@ export async function acquireFlutter(
 
   const toolRoot = join(extPath, "flutter");
   debug(
-    `Adding ${toolRoot} to cache (${flutterToolName}, ${release.version}, ${platform}).`
+    `Adding ${toolRoot} to cache (${flutterToolName}, ${release.version}, ${arch()}).`
   );
-  return cacheDir(toolRoot, flutterToolName, release.version, platform);
+  return cacheDir(toolRoot, flutterToolName, release.version, arch());
 }
 
 export async function getFlutter(channel: string): Promise<Release> {
   const platform = getPlatform();
   const release = await queryLatestRelease(channel, platform);
 
-  let toolPath = find(flutterToolName, release.version, platform);
+  let toolPath = find(flutterToolName, release.version, arch());
 
   if (toolPath) {
     debug(
-      `${flutterToolName} found in cache (${toolPath}, ${release.version}, ${platform}).`
+      `${flutterToolName} found in cache (${toolPath}, ${release.version}, ${arch()}).`
     );
   } else {
     toolPath = await acquireFlutter(release, platform);

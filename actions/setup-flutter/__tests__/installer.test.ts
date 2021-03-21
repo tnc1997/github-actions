@@ -1,7 +1,8 @@
 import { rmRF } from "@actions/io";
+import { arch } from "os";
 import { join } from "path";
 import { existsSync } from "fs";
-import { getFlutter, getPlatform } from "../src/installer";
+import { getFlutter } from "../src/installer";
 
 const tempDir = join(
   __dirname,
@@ -33,7 +34,7 @@ describe("installer tests", () => {
   it("Downloads and caches a version of Flutter if no matching version is installed", async () => {
     const release = await getFlutter("stable");
 
-    const flutter = join(toolDir, "Flutter", release.version, getPlatform());
+    const flutter = join(toolDir, "Flutter", release.version, arch());
 
     expect(existsSync(`${flutter}.complete`)).toBe(true);
     expect(existsSync(join(flutter, "bin", "flutter.bat"))).toBe(true);

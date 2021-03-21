@@ -5,6 +5,7 @@ inputs:
   channel:
     description: 'The name of a Flutter channel to use.'
     default: 'stable'
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
