@@ -1,23 +1,17 @@
 on:
   pull_request:
     branches:
-      - master
+      - main
 jobs:
   test:
-    if: contains(toJson(github.event.commits), '[skip ci]') == false
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
         operating-system: [ ubuntu-latest, windows-latest ]
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          fetch-depth: 0
-      - uses: actions/setup-node@master
-        with:
-          node-version: '14.x'
-      - run: node ./common/scripts/install-run-rush.js check
-      - run: node ./common/scripts/install-run-rush.js change --verify
-      - run: node ./common/scripts/install-run-rush.js install
-      - run: node ./common/scripts/install-run-rush.js rebuild --verbose
-      - run: node ./common/scripts/install-run-rush.js test
+          node-version: 16.x
+      - run: npm run build --workspaces
+      - run: npm run test --workspaces
