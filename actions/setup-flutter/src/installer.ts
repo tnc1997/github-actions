@@ -32,7 +32,7 @@ if (!tempDir) {
   tempDir = join(baseLocation, "actions", "temp");
 }
 
-const baseUrl = "https://storage.googleapis.com/flutter_infra/releases/";
+const baseUrl = "https://storage.googleapis.com/flutter_infra_release/releases/";
 
 const flutterToolName = "Flutter";
 
