@@ -1,6 +1,6 @@
 {
   "name": "setup-flutter",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "private": true,
   "main": "lib/setup-flutter.js",
   "scripts": {
